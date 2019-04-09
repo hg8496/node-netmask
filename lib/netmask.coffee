@@ -94,6 +94,15 @@ class Netmask
           long++
         return
 
+    networkIterator: ->
+        long = ip2long(@first)
+        lastLong = ip2long(@last)
+        index = 0
+        while long <= lastLong
+          yield long2ip(long)
+          index++
+          long++
+
     # Returns the complete netmask formatted as `base/bitmask`
     toString: ->
         return @base + "/" + @bitmask
