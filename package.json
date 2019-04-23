@@ -2,7 +2,7 @@
     "author": "Christian Stolz <hg8496@cstolz.de>",
     "name": "@hg8496/netmask",
     "description": "Parse, lookup and iterate IP network blocks",
-    "version": "1.0.9",
+    "version": "2.0.0",
     "homepage": "https://github.com/hg8496/node-netmask",
     "bugs": "https://github.com/hg8496/node-netmask/issues",
     "license": "MIT",
