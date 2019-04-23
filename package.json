@@ -1,10 +1,10 @@
 {
-    "author": "Olivier Poitrey <rs@dailymotion.com>",
+    "author": "Christian Stolz <hg8496@cstolz.de>",
     "name": "@hg8496/netmask",
     "description": "Parse, lookup and iterate IP network blocks",
     "version": "1.0.9",
-    "homepage": "https://github.com/rs/node-netmask",
-    "bugs": "https://github.com/rs/node-netmask/issues",
+    "homepage": "https://github.com/hg8496/node-netmask",
+    "bugs": "https://github.com/hg8496/node-netmask/issues",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -18,18 +18,34 @@
         "cidr",
         "netmask",
         "subnet",
-        "ipcalc"
+        "ipcalc",
+        "typescript"
     ],
-    "main": "./lib/netmask",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist/**/*"
+    ],
     "scripts": {
-        "prepublish": "coffee -c lib/*.coffee",
-        "test": "vows --spec test/*"
+        "prepare": "npm run build",
+        "prepublishOnly": "npm test && npm run lint",
+        "preversion": "npm run lint",
+        "version": "npm run format && git add -A lib",
+        "build": "tsc",
+        "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.js\"",
+        "lint": "tslint -p tsconfig.json",
+        "test": "jest --config jestconfig.json"
     },
     "engines": {
         "node": ">= 0.4.0"
     },
     "devDependencies": {
-        "coffeescript": ">=2.4.1",
-        "vows": "*"
+        "@types/jest": "^24.0.11",
+        "jest": "^24.7.1",
+        "prettier": "^1.17.0",
+        "ts-jest": "^24.0.2",
+        "tslint": "^5.16.0",
+        "tslint-config-prettier": "^1.18.0",
+        "typescript": "^3.4.4"
     }
 }
