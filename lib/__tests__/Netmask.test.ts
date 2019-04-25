@@ -158,19 +158,19 @@ describe('Test all creation examples from doku', () => {
     const mockCallback = jest.fn(ip => ip);
     classC2.forEachHost(mockCallback);
     expect(mockCallback.mock.calls.length).toBe(254);
-    expect(mockCallback.mock.calls[0][0]).toBe("192.168.2.1");
-    expect(mockCallback.mock.calls[123][0]).toBe("192.168.2.124");
-    expect(mockCallback.mock.calls[253][0]).toBe("192.168.2.254");
+    expect(mockCallback.mock.calls[0][0]).toBe('192.168.2.1');
+    expect(mockCallback.mock.calls[123][0]).toBe('192.168.2.124');
+    expect(mockCallback.mock.calls[253][0]).toBe('192.168.2.254');
   });
 
   test('Test iterateHosts', () => {
     const classC2 = new Netmask('192.168.2.0/24');
     const iterator = classC2.iterateHosts();
-    expect(iterator.next().value).toBe("192.168.2.1");
-    for(let i = 0; i < 122; ++i) iterator.next();
-    expect(iterator.next().value).toBe("192.168.2.124");
-    for(let i = 0; i < 129; ++i) iterator.next();
-    expect(iterator.next().value).toBe("192.168.2.254");
+    expect(iterator.next().value).toBe('192.168.2.1');
+    for (let i = 0; i < 122; ++i) iterator.next();
+    expect(iterator.next().value).toBe('192.168.2.124');
+    for (let i = 0; i < 129; ++i) iterator.next();
+    expect(iterator.next().value).toBe('192.168.2.254');
     expect(iterator.next().done).toBe(true);
   });
 });
