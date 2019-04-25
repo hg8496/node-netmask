@@ -1,4 +1,4 @@
-import { Netmask } from '../index';
+import Netmask from '../index';
 
 function testClassC2(netmask: Netmask) {
   expect(netmask.networkSize).toBe(256);
