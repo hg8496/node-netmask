@@ -31,11 +31,12 @@
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A lib",
+    "postversion": "git push && git push --tags",
     "build": "tsc",
     "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "test": "jest --coverage --config jestconfig.json",
-    "coverall": "jest --config jestconfig.json --coverage --coverageReporters=text-lcov | ./node_modules/coveralls/bin/coveralls.js"
+    "coveralls": "jest --config jestconfig.json --coverage --coverageReporters=text-lcov | coveralls"
   },
   "engines": {
     "node": ">= 8.0.0"
