@@ -24,7 +24,7 @@ function ip2long(ip: string): number {
   }
   return result >>> 0;
 }
-export  class Netmask {
+export class Netmask {
   public readonly network: string;
   public readonly baseIP: string;
   public readonly firstHostIP: string;
