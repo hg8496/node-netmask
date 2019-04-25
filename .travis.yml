@@ -12,3 +12,5 @@ deploy:
   on:
     tags: true
     repo: hg8496/node-netmask
+    node: 10
+  skip_cleanup: true
