@@ -31,36 +31,36 @@ function testClassB(netmask: Netmask) {
 }
 
 test('Private class C network "/" notation', () => {
-  let classC2 = new Netmask('192.168.2.0/24');
+  const classC2 = new Netmask('192.168.2.0/24');
   testClassC2(classC2);
 });
 
 test('Private class C network "/" notation with host IP', () => {
-  let classC2 = new Netmask('192.168.2.22/24');
+  const classC2 = new Netmask('192.168.2.22/24');
   testClassC2(classC2);
 });
 
 test('Private class C network left out notation', () => {
-  let classC2 = new Netmask('192.168.2');
+  const classC2 = new Netmask('192.168.2');
   testClassC2(classC2);
 });
 
 test('Private class C network netmask notation', () => {
-  let classC2 = new Netmask('192.168.2.0', '255.255.255.0');
+  const classC2 = new Netmask('192.168.2.0', '255.255.255.0');
   testClassC2(classC2);
 });
 test('Private class B network "/" notation', () => {
-  let classB = new Netmask('128.0.0.0/16');
+  const classB = new Netmask('128.0.0.0/16');
   testClassB(classB);
 });
 
 test('Private class B network left out notation', () => {
-  let classB = new Netmask('128.0');
+  const classB = new Netmask('128.0');
   testClassB(classB);
 });
 
 test('Private class B network netmask notation', () => {
-  let classB = new Netmask('128.0.0.0', '255.255.0.0');
+  const classB = new Netmask('128.0.0.0', '255.255.0.0');
   testClassB(classB);
 });
 
@@ -84,7 +84,7 @@ test('Ranges that are a power-of-two big, but are not legal blocks', () => {
 });
 
 test('Test boundaries for contains', () => {
-  let netmask = new Netmask('192.168.2');
+  const netmask = new Netmask('192.168.2');
   expect(netmask.contains('192.168.2.0')).toBe(true);
   expect(netmask.contains('192.168.2.22')).toBe(true);
   expect(netmask.contains('192.168.2.23')).toBe(true);
@@ -151,4 +151,15 @@ describe('Test all creation examples from doku', () => {
     const block = new Netmask('140');
     expect(block.netmaskBits).toBe(8);
   });
+
+  test('Test forEachHost', () => {
+    const classC2 = new Netmask('192.168.2.0/24');
+    const mockCallback = jest.fn(ip => ip);
+    classC2.forEachHost(mockCallback);
+    expect(mockCallback.mock.calls.length).toBe(254);
+    expect(mockCallback.mock.calls[0][0]).toBe("192.168.2.1");
+    expect(mockCallback.mock.calls[123][0]).toBe("192.168.2.124");
+    expect(mockCallback.mock.calls[253][0]).toBe("192.168.2.254");
+  });
+
 });
