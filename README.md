@@ -1,22 +1,23 @@
-Netmask
+Node Netmask
 =======
+[![NPM version](https://img.shields.io/npm/v/@hg8496/netmask.svg)](https://www.npmjs.com/package/@hg8496/netmask)
 
-The Netmask class parses and understands IPv4 CIDR blocks so they can be explored and compared. This module is highly inspired by Perl [Net::Netmask](http://search.cpan.org/dist/Net-Netmask/) module.
+The Netmask class parses and understands IPv4 CIDR blocks so they can be explored. This module is highly inspired by coffeescript module [rs/node-netmask](https://github.com/rs/node-netmask) module.
 
 Synopsis
 --------
 
-    import { Netmask } from '@hg8496/netmask')
+    import { Netmask } from '@hg8496/netmask'
 
-    var block = new Netmask('10.0.0.0/12');
-    block.base;                     // 10.0.0.0
-    block.mask;                     // 255.240.0.0
-    block.bitmask;                  // 12
+    const block = new Netmask('10.0.0.0/12');
+    block.baseIP;                   // 10.0.0.0
+    block.netmask;                  // 255.240.0.0
+    block.netmaskBits;              // 12
     block.hostmask;                 // 0.15.255.255
-    block.broadcast;                // 10.15.255.255
-    block.size;                     // 1048576
-    block.first;                    // 10.0.0.1
-    block.last;                     // 10.15.255.254
+    block.broadcastIP;              // 10.15.255.255
+    block.networkSize;              // 1048576
+    block.firstHostIP;              // 10.0.0.1
+    block.lastHostIP;               // 10.15.255.254
 
     block.contains('10.0.8.10');    // true
     block.contains('10.8.0.10');    // true
@@ -30,9 +31,9 @@ Constructing
 Netmask objects are created with an IP address and optionally a mask. There are many forms that are recognized:
 
     '216.240.32.0/24'               // The preferred form.
+    '216.240.32.0', '24'
     '216.240.32.0/255.255.255.0'
     '216.240.32.0', '255.255.255.0'
-    '216.240.32.0', 0xffffff00
     '216.240.32.4'                  // A /32 block.
     '216.240.32'                    // A /24 block.
     '216.240'                       // A /16 block.
@@ -43,15 +44,16 @@ Netmask objects are created with an IP address and optionally a mask. There are 
 API
 ---
 
-- `.base`: The base address of the network block as a string (eg: 216.240.32.0). Base does not give an indication of the size of the network block.
-- `.mask`: The netmask as a string (eg: 255.255.255.0).
+- `.baseIP`: The base address of the network block as a string (eg: 216.240.32.0). Base does not give an indication of the size of the network block.
+- `.netmask`: The netmask as a string (eg: 255.255.255.0).
 - `.hostmask`: The host mask which is the opposite of the netmask (eg: 0.0.0.255).
-- `.bitmask`: The netmask as a number of bits in the network portion of the address for this block (eg: 24).
-- `.size`: The number of IP addresses in a block (eg: 256).
-- `.broadcast`: The blocks broadcast address (eg: 192.168.1.0/24 => 192.168.1.255)
-- `.first`, `.last`: First and last useable address
-- `.contains(ip or block)`: Returns a true if the IP number `ip` is part of the network. That is, a true value is returned if `ip` is between `base` and `broadcast`. If a Netmask object or a block is given, it returns true only of the given block fits inside the network.
-- `.forEach(fn)`: Similar to the Array prototype method. It loops through all the useable addresses, ie between `first` and `last`.
+- `.netmaskBits`: The netmask as a number of bits in the network portion of the address for this block (eg: 24).
+- `.networkSize`: The number of IP addresses in a block (eg: 256).
+- `.broadcastIP`: The blocks broadcast address (eg: 192.168.1.0/24 => 192.168.1.255)
+- `.firstHostIP`, `.lastHostIP`: First and last useable address
+- `.contains(ip)`: Returns a true if the IP number `ip` is part of the network. That is, a true value is returned if `ip` is between `baseIP` and `broadcastIP`.
+- `.forEachHost(fn)`: Similar to the Array prototype method. It loops through all the useable addresses, ie between `firstHostIP` and `lastHostIP`.
+- `.iterateHosts`: Returns an IterableIterator with the same logic as `forEachHost`
 - `.toString()`: The netmask in base/bitmask format (e.g., '216.240.32.0/24')
 
 Installation
@@ -64,7 +66,7 @@ License
 
 (The MIT License)
 
-Copyright (c) 2011 Olivier Poitrey <rs@dailymotion.com>
+Copyright (c) 2019 Christian Stolz <hg8496@cstolz.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

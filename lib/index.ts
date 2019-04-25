@@ -25,17 +25,18 @@ function ip2long(ip: string): number {
   return result >>> 0;
 }
 export class Netmask {
-  public network: string;
-  public networkLong: number;
-  public baseIP: string;
-  public firstHostIP: string;
-  public lastHostIP: string;
-  public broadcastIP: string;
-  public netmask: string;
-  public netmaskBits: number = -1;
-  public netmaskLong: number;
-  public networkSize: number;
-  public hostmask: string;
+  public readonly network: string;
+  public readonly baseIP: string;
+  public readonly firstHostIP: string;
+  public readonly lastHostIP: string;
+  public readonly broadcastIP: string;
+  public readonly netmask: string;
+  public readonly netmaskBits: number = -1;
+  public readonly networkSize: number;
+  public readonly hostmask: string;
+
+  private readonly networkLong: number;
+  private readonly netmaskLong: number;
 
   constructor(net: string, mask?: string) {
     this.netmaskLong = 0;

@@ -10,6 +10,16 @@ function testClassC2(netmask: Netmask) {
   expect(netmask.toString()).toBe('192.168.2.0/24');
 }
 
+function testClassC216(netmask: Netmask) {
+  expect(netmask.networkSize).toBe(256);
+  expect(netmask.firstHostIP).toBe('216.240.32.1');
+  expect(netmask.lastHostIP).toBe('216.240.32.254');
+  expect(netmask.broadcastIP).toBe('216.240.32.255');
+  expect(netmask.netmaskBits).toBe(24);
+  expect(netmask.netmask).toBe('255.255.255.0');
+  expect(netmask.toString()).toBe('216.240.32.0/24');
+}
+
 function testClassB(netmask: Netmask) {
   expect(netmask.networkSize).toBe(Math.pow(2, 16));
   expect(netmask.firstHostIP).toBe('128.0.0.1');
@@ -98,4 +108,47 @@ test('Test cases from the doku', () => {
   expect(block.contains('10.0.8.10')).toBe(true);
   expect(block.contains('10.8.0.10')).toBe(true);
   expect(block.contains('192.168.1.20')).toBe(false);
+});
+
+describe('Test all creation examples from doku', () => {
+  test('216.240.32.0/24', () => {
+    const block = new Netmask('216.240.32.0/24');
+    testClassC216(block);
+  });
+  test('216.240.32.0/255.255.255.0', () => {
+    const block = new Netmask('216.240.32.0/255.255.255.0');
+    testClassC216(block);
+  });
+  test("'216.240.32.0', '255.255.255.0'", () => {
+    const block = new Netmask('216.240.32.0', '255.255.255.0');
+    testClassC216(block);
+  });
+  test('216.240.32', () => {
+    const block = new Netmask('216.240.32');
+    testClassC216(block);
+  });
+  test('216.240.32/24', () => {
+    const block = new Netmask('216.240.32/24');
+    testClassC216(block);
+  });
+  test("'216.240.32', '24'", () => {
+    const block = new Netmask('216.240.32', '24');
+    testClassC216(block);
+  });
+  test('216.240.32.4', () => {
+    const block = new Netmask('216.240.32.4');
+    expect(block.netmaskBits).toBe(32);
+  });
+  test('216.240', () => {
+    const block = new Netmask('216.240');
+    expect(block.netmaskBits).toBe(16);
+  });
+  test('216.240/16', () => {
+    const block = new Netmask('216.240/16');
+    expect(block.netmaskBits).toBe(16);
+  });
+  test('140', () => {
+    const block = new Netmask('140');
+    expect(block.netmaskBits).toBe(8);
+  });
 });
