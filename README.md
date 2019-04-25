@@ -3,6 +3,7 @@ Node Netmask
 [![NPM version](https://img.shields.io/npm/v/@hg8496/netmask.svg)](https://www.npmjs.com/package/@hg8496/netmask)
 [![Build Status](https://travis-ci.org/hg8496/node-netmask.svg?branch=master)](https://travis-ci.org/hg8496/node-netmask)
 [![Coverage Status](https://coveralls.io/repos/github/hg8496/node-netmask/badge.svg?branch=master)](https://coveralls.io/github/hg8496/node-netmask?branch=master)
+
 The Netmask class parses and understands IPv4 CIDR blocks so they can be explored. This module is highly inspired by coffeescript module [rs/node-netmask](https://github.com/rs/node-netmask) module.
 
 Synopsis
