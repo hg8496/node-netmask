@@ -1,6 +1,14 @@
 language: node_js
 node_js:
-  - "8"
-  - "10"
-  - "12"
+- '8'
+- '10'
+- '12'
 after_success: npm run coveralls
+deploy:
+  provider: npm
+  email: hg8496@cstolz.de
+  api_key:
+    secure: jfDQqQLE8j43w+lHv047VncmkuNHmt3LmqC7YgzAu7Gs/nzyQzDRRI4QlODG68L7uFcj9Y0RFJf8UK40U+UcwmLHN2hWQ+8Jzu0l0/T3xFL11lrmJSt617wY6cO028b+E+59yVEqX/BeiYuivV10zVlHZhAXRJHGqYxTAwq8V23Z8708SyLQKXQO1/UIgEGpAWhkOF6CctLgEjbJgR4mQrO1nEZ3iwhvEaoFUk95rsX0pjaDXcPLpB3SXKbAAka2Jl+CaPr4R5jpYU8ytOiOGFL3aEEHaAwB24bSKJ6cRnzQC9hiZTNMKBzBpCO/8Bou4FihqSgv50dt9hBMP1LEwfIsX56WRnamc5rwHe9kd8ushqiHP1Ym4r51YZH9rzw4DD6ReNpM6RFBdYwpQrqDiNn5Erh3adsxdiYyuhsDFFvnxF90cCbiCsUwIwX5d4YP/sV1Y7zd6qlgxUZusnhS8OzXvnifY9eIGLCKLBJH2EvRlm9Knai9ImRoWhFSBPFjlD8ZyURGYyzjqCKrquAfoxKRz6Gm1mbdCLQZsfqrbZ3zxoQGUA74f52H9Hn801iRJVv6JCF03bHT8ZIevcJzqXYCptmka348yI33yRyssVsoeiBjpcIx7TelTRZsj7/cr3J6Q2IHTXYGBNeGxQYnTdqYS72Ncc5/dBKpThrripM=
+  on:
+    tags: true
+    repo: hg8496/node-netmask

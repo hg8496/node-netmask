@@ -69,6 +69,7 @@ function createNetmask(net: string): any {
 }
 
 test('Wrong entries', () => {
+  expect(createNetmask('209.255.68.22.23/24')).toThrow('Invalid IP');
   expect(createNetmask('209.256.68.22/255.255.224.0')).toThrow('Invalid byte: 256');
   expect(createNetmask('209.180.68.22/256.255.224.0')).toThrow('Invalid byte: 256');
   expect(createNetmask('209.500.70.33/19')).toThrow('Invalid byte: 500');
@@ -162,4 +163,14 @@ describe('Test all creation examples from doku', () => {
     expect(mockCallback.mock.calls[253][0]).toBe("192.168.2.254");
   });
 
+  test('Test iterateHosts', () => {
+    const classC2 = new Netmask('192.168.2.0/24');
+    const iterator = classC2.iterateHosts();
+    expect(iterator.next().value).toBe("192.168.2.1");
+    for(let i = 0; i < 122; ++i) iterator.next();
+    expect(iterator.next().value).toBe("192.168.2.124");
+    for(let i = 0; i < 129; ++i) iterator.next();
+    expect(iterator.next().value).toBe("192.168.2.254");
+    expect(iterator.next().done).toBe(true);
+  });
 });
