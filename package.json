@@ -34,13 +34,15 @@
         "build": "tsc",
         "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.js\"",
         "lint": "tslint -p tsconfig.json",
-        "test": "jest --config jestconfig.json"
+        "test": "jest --coverage --config jestconfig.json",
+        "coverall": "jest --config jestconfig.json --coverage --coverageReporters=text-lcov | coveralls"
     },
     "engines": {
-        "node": ">= 0.4.0"
+        "node": ">= 8.0.0"
     },
     "devDependencies": {
         "@types/jest": "^24.0.11",
+        "coveralls": "^3.0.3",
         "jest": "^24.7.1",
         "prettier": "^1.17.0",
         "ts-jest": "^24.0.2",
