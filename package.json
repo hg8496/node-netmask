@@ -2,7 +2,7 @@
   "author": "Christian Stolz <hg8496@cstolz.de>",
   "name": "@hg8496/netmask",
   "description": "Parse, lookup and iterate IP network blocks",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "homepage": "https://github.com/hg8496/node-netmask",
   "bugs": "https://github.com/hg8496/node-netmask/issues",
   "license": "MIT",
@@ -45,13 +45,13 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.11",
-    "coveralls": "^3.0.3",
-    "jest": "^24.7.1",
-    "prettier": "^1.17.0",
+    "@types/jest": "^24.0.17",
+    "coveralls": "^3.0.6",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
     "ts-jest": "^24.0.2",
-    "tslint": "^5.16.0",
+    "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.4.4"
+    "typescript": "^3.5.3"
   }
 }
