@@ -155,7 +155,7 @@ describe('Test all creation examples from doku', () => {
 
   test('Test forEachHost', () => {
     const classC2 = new Netmask('192.168.2.0/24');
-    const mockCallback = jest.fn(ip => ip);
+    const mockCallback = jest.fn((ip) => ip);
     classC2.forEachHost(mockCallback);
     expect(mockCallback.mock.calls.length).toBe(254);
     expect(mockCallback.mock.calls[0][0]).toBe('192.168.2.1');

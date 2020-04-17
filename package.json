@@ -2,7 +2,7 @@
   "author": "Christian Stolz <hg8496@cstolz.de>",
   "name": "@hg8496/netmask",
   "description": "Parse, lookup and iterate IP network blocks",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "homepage": "https://github.com/hg8496/node-netmask",
   "bugs": "https://github.com/hg8496/node-netmask/issues",
   "license": "MIT",
@@ -33,7 +33,7 @@
     "version": "npm run format && git add -A lib",
     "postversion": "git push && git push --tags",
     "build": "tsc",
-    "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.js\"",
+    "format": "prettier --write \"lib/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "test": "jest --coverage --config jestconfig.json",
     "coveralls": "jest --config jestconfig.json --coverage --coverageReporters=text-lcov | coveralls"
@@ -45,13 +45,13 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.25",
-    "coveralls": "^3.0.9",
-    "jest": "^24.9.0",
-    "prettier": "^1.19.1",
-    "ts-jest": "^24.3.0",
-    "tslint": "^5.20.1",
+    "@types/jest": "^25.2.1",
+    "coveralls": "^3.0.11",
+    "jest": "^25.3.0",
+    "prettier": "^2.0.4",
+    "ts-jest": "^25.4.0",
+    "tslint": "^6.1.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.7.4"
+    "typescript": "^3.8.3"
   }
 }
